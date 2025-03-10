@@ -1,31 +1,40 @@
 const counterBtn = document.querySelector('.counter');
 const resetBtn = document.querySelector('.reset');
 
-let counter = 5;
+function useCounter() {
+    let counter = 5;
+
+    function renderCounter() {
+        counterBtn.textContent = `Count: ${counter}`;
+    
+        counterBtn.classList.toggle('red', isCounterTooBig());
+    }
+
+    return {
+        getCounter() {
+            return counter;
+        },
+        setCounter(newValue) {
+            counter = newValue;
+            renderCounter();
+        }
+    }
+}
+
+const { getCounter, setCounter } = useCounter();
 
 function isCounterTooBig() {
-    return counter > 10
+    return getCounter() > 10;
 }
-
-function renderCounter() {
-    counterBtn.textContent = `Count: ${counter}`;
-
-    counterBtn.classList.toggle('red', isCounterTooBig());
-}
-
-renderCounter();
 
 counterBtn.addEventListener('click', ()=> {
-    counter++;
-    renderCounter();
+    setCounter(getCounter() + 1)
 });
 
 resetBtn.addEventListener('click', ()=> {
-    counter = 0;
-    renderCounter();
+   setCounter(0)
 });
 
 setInterval(() =>{
-    counter = counter + 1;
-    renderCounter();
+    setCounter(getCounter() + 1)
 }, 1000);
