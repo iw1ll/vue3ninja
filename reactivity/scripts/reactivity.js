@@ -24,3 +24,8 @@ resetBtn.addEventListener('click', ()=> {
     counter = 0;
     renderCounter();
 });
+
+setInterval(() =>{
+    counter = counter + 1;
+    renderCounter();
+}, 1000);
