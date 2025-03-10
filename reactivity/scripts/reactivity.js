@@ -34,3 +34,6 @@ resetBtn.addEventListener('click', ()=> {
 setInterval(() =>{
     counterState.value++;
 }, 1000);
+
+
+//vue2
