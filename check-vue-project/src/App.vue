@@ -54,7 +54,7 @@ const fetchData = async () => {
     data.value = await response.json()
   } catch (err) {
     error.value = `Ошибка: ${err.message}`
-    console.error(err)
+    console.error(err);
   } finally {
     isLoading.value = false
   }
