@@ -27,7 +27,7 @@ const isLoading = ref(false);
 const error = ref(null);
 const msg = ref('Hello');
 
-const maxClicks = 5;
+const maxClicks = 100;
 
 const handleClick = () => {
   if (count.value >= maxClicks) {
@@ -60,6 +60,10 @@ const fetchData = async () => {
     isLoading.value = false;
   }
 };
+
+setInterval(() => {
+  count.value++;
+}, 1000);
 </script>
 
 <template>
