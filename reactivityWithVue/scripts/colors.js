@@ -1,5 +1,5 @@
 import { ref, watchEffect } from 'vue'
-
+import { shuffle } from 'lodash'
 const SIZE = 60;
 
 const colors = ref([
@@ -33,9 +33,10 @@ document.querySelector('button#add').addEventListener('click', () => {
     )
 });
 
-
-
 document.querySelector('button#reset').addEventListener('click', () => {
-    const container = document.querySelector('#colors');
-    container.innerHTML = '';
+    colors.value = [];
+});
+
+document.querySelector('button#shuffle').addEventListener('click', () => {
+    colors.value = shuffle(colors.value)
 });
