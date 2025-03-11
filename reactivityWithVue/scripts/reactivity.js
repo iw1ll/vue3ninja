@@ -7,13 +7,23 @@ const counterState = ref(5)
 const isCounterTooBig = computed(() => counterState > 10)
 
 const renderCounter = () => {
+    console.log('html');
     counterBtn.textContent = `Count: ${counterState.value}`
-    counterBtn.classList.toggle('red', isCounterTooBig.value)
 };
+
+const updateCounterColor = () => {
+    console.log('color');
+    counterBtn.classList.toggle('red', isCounterTooBig.value)
+}
 
 watchEffect(() => {
     renderCounter();
 });
+
+watchEffect(() => {
+    updateCounterColor();
+});
+
 
 
 counterBtn.addEventListener('click', () => {
