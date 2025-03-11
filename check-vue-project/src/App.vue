@@ -19,46 +19,46 @@ import TheWelcome from './components/TheWelcome.vue'
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const count = ref(0)
-const data = ref(null)
-const isLoading = ref(false)
-const error = ref(null)
+const count = ref(0);
+const data = ref(null);
+const isLoading = ref(false);
+const error = ref(null);
 
-const maxClicks = 5
+const maxClicks = 5;
 
 const handleClick = () => {
   if (count.value >= maxClicks) {
-    alert('Достигнут лимит кликов!')
-    return
+    alert('Достигнут лимит кликов!');
+    return;
   }
   
-  count.value++
-  console.log(`Кликов: ${count.value}`)
+  count.value++;
+  console.log(`Кликов: ${count.value}`);
   
   if (count.value % 2 === 0) {
-    document.title = `Четный клик: ${count.value}`
+    document.title = `Четный клик: ${count.value}`;
   }
-}
+};
 
 const fetchData = async () => {
   try {
-    isLoading.value = true
-    error.value = null
+    isLoading.value = true;
+    error.value = null;
     
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1')
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
     
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     
-    data.value = await response.json()
+    data.value = await response.json();
   } catch (err) {
-    error.value = `Ошибка: ${err.message}`
+    error.value = `Ошибка: ${err.message}`;
     console.error(err);
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
-}
+};
 </script>
 
 <template>
