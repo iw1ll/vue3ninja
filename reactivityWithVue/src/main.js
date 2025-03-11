@@ -1,2 +1,2 @@
-import '../scripts/reactivity'
-import '../scripts/colors'
+import '../scripts/reactivity';
+import '../scripts/colors';
