@@ -1,2 +1,2 @@
-import { createApp } from 'vue'
 import '../scripts/reactivity'
+import '../scripts/colors'

@@ -3,20 +3,14 @@ import { ref, watchEffect, computed } from 'vue'
 const counterBtn = document.querySelector('.counter')
 const resetBtn = document.querySelector('.reset')
 
-const initialState = {
-    counter: 1,
-};
-
-const counterState = ref(initialState)
-const isCounterTooBig = computed(() => counterState.value.counter > 10);
+const counterState = ref(5)
+const isCounterTooBig = computed(() => counterState.value > 10);
 
 const renderCounter = () => {
-    console.log('html');
-    counterBtn.textContent = `Count: ${counterState.value.counter}`
+    counterBtn.textContent = `Count: ${counterState.value}`
 };
 
 const updateCounterColor = () => {
-    console.log('color');
     counterBtn.classList.toggle('red', isCounterTooBig.value);
 }
 
@@ -28,16 +22,14 @@ watchEffect(() => {
     updateCounterColor();
 });
 
-
-
 counterBtn.addEventListener('click', () => {
-    counterState.value.counter++;
+    counterState.value++;
 });
 
 resetBtn.addEventListener('click', () => {
-    counterState.value.counter = 0;
+    counterState.value = 0;
 });
 
 setInterval(() => {
-    counterState.value.counter++;
+    counterState.value++;
 }, 1000);
