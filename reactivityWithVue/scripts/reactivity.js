@@ -1,27 +1,31 @@
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, watch } from 'vue'
 
 const counterBtn = document.querySelector('.counter')
 const resetBtn = document.querySelector('.reset')
 
-const counter = ref(5)
+const counterState = ref(5)
+
+const renderCounter = () => {
+    counterBtn.textContent = `Count: ${counterState.value}`
+    counterBtn.classList.toggle('red', isCounterTooBig())
+};
 
 watchEffect(() => {
-    counterBtn.textContent = `Count: ${counter.value}`
-    counterBtn.classList.toggle('red', isCounterTooBig())
-})
+    renderCounter()
+});
 
 function isCounterTooBig() {
-    return counter.value > 10
+    return counterState.value > 10
 }
 
 counterBtn.addEventListener('click', () => {
-    counter.value++
+    counterState.value++;
 })
 
 resetBtn.addEventListener('click', () => {
-    counter.value = 0
+    counterState.value = 0;
 })
 
 setInterval(() => {
-    counter.value++
+    counterState.value++;
 }, 1000)
