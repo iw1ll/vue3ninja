@@ -25,6 +25,7 @@ const count = ref(0);
 const data = ref(null);
 const isLoading = ref(false);
 const error = ref(null);
+const msg = ref('Hello');
 
 const maxClicks = 5;
 
@@ -64,11 +65,13 @@ const fetchData = async () => {
 <template>
   <div class="test-container">
     <h1>Vue 3 Works! 🎉</h1>
-    <button @click="handleClick">Click {{ count }} раз</button>    
+    <button @click="handleClick">Click {{ count }} раз</button>
     <div 
       class="color-box" 
       v-bind:style="{ backgroundColor: `hsl(${count * 100}, 70%, 50%)` }"
     ></div>
+
+    <span>Message: {{ msg }}</span>
   </div>
 
   <div>
