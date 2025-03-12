@@ -1,68 +1,59 @@
-<!-- <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup lang="ts">
+import { ref } from 'vue';
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+const count = ref(0);
+const data = ref<Post | null>(null);
+const isLoading = ref(false);
+const error = ref('');
+const msg = ref('Hello');
+const maxClicks = 100;
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
-</template> -->
-
-<script setup>
-import { ref } from 'vue'
-
-const count = ref(0)
-const data = ref(null)
-const isLoading = ref(false)
-const error = ref(null)
-const msg = ref('Hello')
-
-const maxClicks = 100
+interface Post {
+  id: number
+  title: string
+  body: string
+  userId: number
+}
 
 const handleClick = () => {
   if (count.value >= maxClicks) {
-    alert('Достигнут лимит кликов!')
-    return
+    alert('Достигнут лимит кликов!');
+    return;
   }
 
-  count.value++
-  console.log(`Кликов: ${count.value}`)
+  count.value++;
+  console.log(`Кликов: ${count.value}`);
 
   if (count.value % 2 === 0) {
-    document.title = `Четный клик: ${count.value}`
+    document.title = `Четный клик: ${count.value}`;
   }
-}
+};
 
 const fetchData = async () => {
   try {
-    isLoading.value = true
-    error.value = null
+    isLoading.value = true;
+    error.value = '';
 
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1')
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-    data.value = await response.json()
-  } catch (err) {
-    error.value = `Ошибка: ${err.message}`
-    console.error(err)
+    data.value = await response.json() as Post;
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      error.value = `Ошибка: ${err.message}`;
+      console.error(err);
+    } else {
+      error.value = 'Неизвестная ошибка';
+    }
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
-}
+};
 
 setInterval(() => {
-  count.value++
-}, 1000)
+  count.value++;
+}, 1000);
 </script>
 
 <template>
