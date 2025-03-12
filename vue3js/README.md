@@ -1,4 +1,4 @@
-# vue-project
+# vue3js
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -56,3 +56,6 @@ npm run test:e2e -- tests/example.spec.ts
 # Runs the tests in debug mode
 npm run test:e2e -- --debug
 ```
+### ESLint
+npm install eslint eslint-plugin-vue @vue/eslint-config-standard --save-dev
+npx eslint --init  
