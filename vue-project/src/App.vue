@@ -3,9 +3,9 @@ import CounterComponent from './components/CounterComponent.vue';
 </script>
 
 <template>
-  <div class="app-container">
-    <CounterComponent />
-  </div>
+    <div class="app-container">
+        <CounterComponent />
+    </div>
 </template>
 
 <style>
