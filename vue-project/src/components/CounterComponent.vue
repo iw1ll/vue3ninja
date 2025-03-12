@@ -1,8 +1,6 @@
-<!-- src/components/CounterComponent.vue -->
 <script setup lang="ts">
 import { ref } from 'vue';
 
-// Реактивные переменные
 const count = ref(0);
 const data = ref<Post | null>(null);
 const isLoading = ref(false);
@@ -10,7 +8,6 @@ const error = ref('');
 const msg = ref('Hello');
 const maxClicks = 100;
 
-// Интерфейс для данных поста
 interface Post {
   id: number
   title: string
@@ -33,7 +30,6 @@ const handleClick = () => {
   }
 };
 
-// Загрузка данных
 const fetchData = async () => {
   try {
     isLoading.value = true;
@@ -56,7 +52,6 @@ const fetchData = async () => {
   }
 };
 
-// Таймер
 setInterval(() => {
   count.value++;
 }, 1000);
