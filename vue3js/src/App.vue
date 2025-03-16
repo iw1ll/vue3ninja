@@ -91,7 +91,7 @@ function randomNum() {
   width: 60px;
   border-radius: 5px;
 
-  position: absolute;
+  position: relative;
   transition: all 0.5s;
 }
 
