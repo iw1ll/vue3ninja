@@ -68,7 +68,7 @@ function randomNum() {
     <button id="add" v-if="colors.length < 5" @click="addColor">Add</button>
     <button id="reset" @click="resetColors">Reset</button>
     <button id="shuffle" @click="shuffleColors">Shuffle</button>
-    <button @click="randomNum()">{{ randomValue }}</button>
+    <button @click="randomNum">{{ randomValue }}</button>
     <!-- <RouterView /> -->
 </template>
 
