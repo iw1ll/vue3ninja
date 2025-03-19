@@ -2,9 +2,12 @@
 // import { RouterLink, RouterView } from 'vue-router';
 // import HelloWorld from './components/HelloWorld.vue';
 import { ref } from 'vue';
+import { useCounterStore } from '@/stores/counter';
+import CountNum from './components/CountNum.vue';
+const counterStore = useCounterStore();
 
 const SIZE = 60;
-
+const count = ref(0);
 const randomValue = ref<number>(0);
 const a = ref<string>('a');
 
@@ -43,7 +46,16 @@ function randomNum() {
 </script>
 
 <template>
+    <div>
+        <p>Count: {{ counterStore.count }}</p>
+        <p>Double: {{ counterStore.doubleCount }}</p>
+        <button @click="counterStore.increment">+1</button>
+    </div>
     <header>
+        <CountNum :count="count"/>
+        {{ count }}
+        <button @click="count++">++++++</button>
+        <button @click="count--">-------</button>
         <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
         <div class="wrapper">
